@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -23,6 +24,23 @@ namespace Lottery
         public MainWindow()
         {
             InitializeComponent();
+            storyboard1 = (Storyboard)this.FindResource("storyboard1");
+            
+        }
+        Storyboard storyboard1;
+        private void Image_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            storyboard1.Begin();
+        }
+        
+
+        private void ThicknessAnimation_Completed(object sender, EventArgs e)
+        {
+            left1.Content = left2.Content;
+            left2.Content = new Random().Next(10);
+            left1.Margin = new Thickness(0, 0, 0, 0);
+            left2.Margin = new Thickness(0, 300, 0, -300);
+            storyboard1.Begin();
         }
     }
 }
