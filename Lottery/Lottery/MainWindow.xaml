@@ -4,13 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lottery"
-        mc:Ignorable="d"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowState="Maximized"
         Title="MainWindow">
     <Window.Resources>
-        <Storyboard x:Key="storyboard1">
-            <ThicknessAnimation Completed="ThicknessAnimation_Completed" Storyboard.TargetName="left1" Storyboard.TargetProperty="Margin" To="0,-300,0,0" Duration="0:0:1"></ThicknessAnimation>
-            <ThicknessAnimation Storyboard.TargetName="left2" Storyboard.TargetProperty="Margin" To="0,0,0,0" Duration="0:0:1"></ThicknessAnimation>
-        </Storyboard>
     </Window.Resources>
     <Grid>
         <Viewbox>
@@ -21,16 +17,22 @@
                         <Image Height="1410" Source="Assets/老虎机主机白底.png" />
                         <Image Height="1361.7" Source="Assets/老虎机主机.png" />
                     </Grid>
-                    <Grid Margin="-25,250,0,0">
-                        <Image Height="534" Source="Assets/老虎机手柄闭合状态白底.png" />
-                        <Image MouseUp="Image_MouseUp" Height="489.5" Source="Assets/老虎机手柄闭合状态.png" />
+                    <Grid Name="grid" MouseUp="Image_MouseUp" MouseDown="Image_MouseDown" IsHitTestVisible="True">
+                        <Grid Name="grid1" Margin="-25,250,0,0" Width="273">
+                            <Image Height="534" Source="Assets/老虎机手柄闭合状态白底.png" />
+                            <Image Height="489.5" Source="Assets/老虎机手柄闭合状态.png" Margin="0,520" />
+                        </Grid>
+                        <Grid Name="grid2"  Margin="-25,792,0,0" Width="273" Visibility="Collapsed">
+                            <Image Height="534" Source="Assets/老虎机手柄板下状态白底.png" />
+                            <Image Height="489.5" Source="Assets/老虎机手柄板下状态.png" />
+                        </Grid>
+
                     </Grid>
                 </StackPanel>
                 <Grid Margin="1051,951,1649,529" Height="300" Width="300" >
-                    <Label x:Name="left1" Margin="0,0,0,0" HorizontalContentAlignment="Center" FontSize="250" FontFamily="Arial Black">1</Label>
-                    <Label x:Name="left2" Margin="0,300,0,-300" HorizontalContentAlignment="Center" FontSize="250" FontFamily="Arial Black">1</Label>
+                    <Label x:Name="left1" Margin="0,0,0,0" HorizontalContentAlignment="Center" FontSize="250" FontFamily="Arial Black">0</Label>
                 </Grid>
-                <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="1406,951,1294,529" Height="300" Width="300" FontSize="250" FontFamily="Arial Black">2</Label>
+                <Label Name="right1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="1406,951,1294,529" Height="300" Width="300" FontSize="250" FontFamily="Arial Black">0</Label>
             </Grid>
         </Viewbox>
     </Grid>

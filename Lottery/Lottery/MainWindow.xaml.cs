@@ -13,6 +13,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Lottery
 {
@@ -24,23 +25,39 @@ namespace Lottery
         public MainWindow()
         {
             InitializeComponent();
-            storyboard1 = (Storyboard)this.FindResource("storyboard1");
-            
+            timer.Interval = TimeSpan.FromMilliseconds(10);
+            timer.Tick += Timer_Tick;
         }
-        Storyboard storyboard1;
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            Random r = new Random();
+            int num = r.Next(1, 55);
+            left1.Content = num / 10;
+            right1.Content = num % 10;
+        }
+
+        DispatcherTimer timer = new DispatcherTimer();
         private void Image_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            storyboard1.Begin();
+            grid1.Visibility = Visibility.Visible;
+            grid2.Visibility = Visibility.Collapsed;
+            grid.ReleaseMouseCapture();
+            if (timer.IsEnabled)
+            {
+                timer.Stop();
+            }
+            else
+            {
+                timer.Start();
+            }
         }
-        
 
-        private void ThicknessAnimation_Completed(object sender, EventArgs e)
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            left1.Content = left2.Content;
-            left2.Content = new Random().Next(10);
-            left1.Margin = new Thickness(0, 0, 0, 0);
-            left2.Margin = new Thickness(0, 300, 0, -300);
-            storyboard1.Begin();
+            grid1.Visibility = Visibility.Collapsed;
+            grid2.Visibility = Visibility.Visible;
+            grid.CaptureMouse();
         }
     }
 }
