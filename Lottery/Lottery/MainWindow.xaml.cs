@@ -32,9 +32,11 @@ namespace Lottery
         private void Timer_Tick(object sender, EventArgs e)
         {
             Random r = new Random();
-            int num = r.Next(1, 55);
-            left1.Content = num / 10;
-            right1.Content = num % 10;
+            int num = r.Next(100000);
+            int num2 = num % 55;
+            num2 += 1;
+            left1.Content = num2 / 10;
+            right1.Content = num2 % 10;
         }
 
         DispatcherTimer timer = new DispatcherTimer();
