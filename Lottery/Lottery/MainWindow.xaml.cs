@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,19 +23,27 @@ namespace Lottery
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<int> list = new List<int>();
         public MainWindow()
         {
             InitializeComponent();
             timer.Interval = TimeSpan.FromMilliseconds(10);
             timer.Tick += Timer_Tick;
+            for (int i = 1; i < 55; i++)
+            {
+                list.Add(i);
+            }
+            if (File.Exists("D:\\test.txt"))
+            {
+                File.Delete("D:\\test.txt");
+            }
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
             Random r = new Random();
-            int num = r.Next(100000);
-            int num2 = num % 55;
-            num2 += 1;
+            int num = r.Next(100000) % list.Count;
+            int num2 =list[num];
             left1.Content = num2 / 10;
             right1.Content = num2 % 10;
         }
@@ -48,6 +57,10 @@ namespace Lottery
             if (timer.IsEnabled)
             {
                 timer.Stop();
+                int num = (int)left1.Content*10 + (int)right1.Content;
+                list.Remove(num);
+                //MessageBox.Show(num.ToString());
+                File.AppendAllText("D:\\test.txt", num.ToString() + "  ");
             }
             else
             {
