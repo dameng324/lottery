@@ -1,38 +1,73 @@
-﻿<Window x:Class="Lottery.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Lottery"
-        mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowState="Maximized"
-        Title="MainWindow">
-    <Window.Resources>
-    </Window.Resources>
+﻿<Window
+    Title="MainWindow"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Maximized"
+    mc:Ignorable="d"
+    x:Class="Lottery.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Lottery"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Window.Resources />
     <Grid>
         <Viewbox>
             <Grid Height="1780" Width="3000">
-                <Image Source="Assets/背景.jpg"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Image Source="pack://application:,,,/Assets/背景.jpg" />
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                     <Grid>
-                        <Image Height="1410" Source="Assets/老虎机主机白底.png" />
-                        <Image Height="1361.7" Source="Assets/老虎机主机.png" />
+                        <Image Height="1410" Source="pack://application:,,,/Assets/老虎机主机白底.png" />
+                        <Image Height="1361.7" Source="pack://application:,,,/Assets/老虎机主机.png" />
                     </Grid>
-                    <Grid Name="grid" MouseUp="Image_MouseUp" MouseDown="Image_MouseDown" IsHitTestVisible="True">
-                        <Grid Name="grid1" Margin="-25,250,0,0" Width="273">
-                            <Image Height="534" Source="Assets/老虎机手柄闭合状态白底.png" />
-                            <Image Height="489.5" Source="Assets/老虎机手柄闭合状态.png" Margin="0,520" />
+                    <Grid
+                        IsHitTestVisible="True"
+                        MouseDown="Image_MouseDown"
+                        MouseUp="Image_MouseUp"
+                        Name="grid">
+                        <Grid
+                            Margin="-25,250,0,0"
+                            Name="grid1"
+                            Width="273">
+                            <Image Height="534" Source="pack://application:,,,/Assets/老虎机手柄闭合状态白底.png" />
+                            <Image
+                                Height="489.5"
+                                Margin="0,520"
+                                Source="pack://application:,,,/Assets/老虎机手柄闭合状态.png" />
                         </Grid>
-                        <Grid Name="grid2"  Margin="-25,792,0,0" Width="273" Visibility="Collapsed">
-                            <Image Height="534" Source="Assets/老虎机手柄板下状态白底.png" />
-                            <Image Height="489.5" Source="Assets/老虎机手柄板下状态.png" />
+                        <Grid
+                            Margin="-25,792,0,0"
+                            Name="grid2"
+                            Visibility="Collapsed"
+                            Width="273">
+                            <Image Height="534" Source="pack://application:,,,/Assets/老虎机手柄板下状态白底.png" />
+                            <Image Height="489.5" Source="pack://application:,,,/Assets/老虎机手柄板下状态.png" />
                         </Grid>
-
                     </Grid>
                 </StackPanel>
-                <Grid Margin="1051,951,1649,529" Height="300" Width="300" >
-                    <Label x:Name="left1" Margin="0,0,0,0" HorizontalContentAlignment="Center" FontSize="250" FontFamily="Arial Black">0</Label>
+                <Grid
+                    Height="300"
+                    Margin="1051,951,1649,529"
+                    Width="300">
+                    <Label
+                        FontFamily="Arial Black"
+                        FontSize="250"
+                        HorizontalContentAlignment="Center"
+                        Margin="0,0,0,0"
+                        x:Name="left1">
+                        0
+                    </Label>
                 </Grid>
-                <Label Name="right1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="1406,951,1294,529" Height="300" Width="300" FontSize="250" FontFamily="Arial Black">0</Label>
+                <Label
+                    FontFamily="Arial Black"
+                    FontSize="250"
+                    Height="300"
+                    HorizontalContentAlignment="Center"
+                    Margin="1406,951,1294,529"
+                    Name="right1"
+                    VerticalContentAlignment="Center"
+                    Width="300">
+                    0
+                </Label>
             </Grid>
         </Viewbox>
     </Grid>
